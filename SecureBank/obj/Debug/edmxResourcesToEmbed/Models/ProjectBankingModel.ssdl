@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectBankingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountDetails">
+    <Key>
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="CID" Type="int" />
+    <Property Name="AccountNumber" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Accounttype" Type="nvarchar" MaxLength="20" />
+    <Property Name="AccountBalance" Type="float" />
+    <Property Name="Password" Type="nvarchar" MaxLength="40" />
+    <Property Name="TransactionPassword" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminPassword" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="BeneficiaryDetails">
+    <Key>
+      <PropertyRef Name="Bid" />
+    </Key>
+    <Property Name="Bid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountNumber" Type="bigint" />
+    <Property Name="BeneficiaryName" Type="nvarchar" MaxLength="40" />
+    <Property Name="BenificiaryAccountNumber" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CID" />
+    </Key>
+    <Property Name="CID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aadharnumber" Type="bigint" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="NetBankingOpted" Type="bit" />
+    <Property Name="DebitCardOpted" Type="bit" />
+    <Property Name="IsApproved" Type="bit" />
+  </EntityType>
+  <EntityType Name="OccupationDetails">
+    <Key>
+      <PropertyRef Name="OID" />
+    </Key>
+    <Property Name="OID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CID" Type="int" />
+    <Property Name="Occupationtype" Type="nvarchar" MaxLength="50" />
+    <Property Name="SourceofIncome" Type="nvarchar" MaxLength="50" />
+    <Property Name="GrossannualIncome" Type="float" />
+  </EntityType>
+  <EntityType Name="PermanentAddress">
+    <Key>
+      <PropertyRef Name="PID" />
+    </Key>
+    <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CID" Type="int" />
+    <Property Name="PAddressLine1" Type="nvarchar(max)" />
+    <Property Name="PAddressLine2" Type="nvarchar(max)" />
+    <Property Name="PLandmark" Type="nvarchar(max)" />
+    <Property Name="PState" Type="nvarchar" MaxLength="40" />
+    <Property Name="PCity" Type="nvarchar" MaxLength="40" />
+    <Property Name="PPincode" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="ResidentialAddress">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CID" Type="int" />
+    <Property Name="RAddressLine1" Type="nvarchar(max)" />
+    <Property Name="RAddressLine2" Type="nvarchar(max)" />
+    <Property Name="RLandmark" Type="nvarchar(max)" />
+    <Property Name="RState" Type="nvarchar" MaxLength="40" />
+    <Property Name="RCity" Type="nvarchar" MaxLength="40" />
+    <Property Name="RPincode" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="StatusTracking">
+    <Key>
+      <PropertyRef Name="ReferenceNumber" />
+    </Key>
+    <Property Name="AdminId" Type="int" />
+    <Property Name="CID" Type="int" />
+    <Property Name="ReferenceNumber" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionDetails">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SenderAccount" Type="bigint" />
+    <Property Name="RecieverAccount" Type="bigint" />
+    <Property Name="TransactionType" Type="nvarchar" MaxLength="10" />
+    <Property Name="TransactionAmount" Type="float" />
+    <Property Name="TransactionDate" Type="datetime" />
+    <Property Name="TransactionMode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Maturityinstruction" Type="nvarchar" MaxLength="30" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK__AccountDeta__CID__49C3F6B7">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="AccountDetails" Type="Self.AccountDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="AccountDetails">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Beneficia__Accou__4AB81AF0">
+    <End Role="AccountDetails" Type="Self.AccountDetails" Multiplicity="0..1" />
+    <End Role="BeneficiaryDetails" Type="Self.BeneficiaryDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountDetails">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="BeneficiaryDetails">
+        <PropertyRef Name="AccountNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OccupationD__CID__4BAC3F29">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="OccupationDetails" Type="Self.OccupationDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="OccupationDetails">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PermanentAd__CID__4CA06362">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="PermanentAddress" Type="Self.PermanentAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="PermanentAddress">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Residential__CID__4D94879B">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="ResidentialAddress" Type="Self.ResidentialAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="ResidentialAddress">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StatusTra__Admin__4E88ABD4">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+    <End Role="StatusTracking" Type="Self.StatusTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="AdminId" />
+      </Principal>
+      <Dependent Role="StatusTracking">
+        <PropertyRef Name="AdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StatusTrack__CID__4F7CD00D">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="StatusTracking" Type="Self.StatusTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="StatusTracking">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Recie__5070F446">
+    <End Role="AccountDetails" Type="Self.AccountDetails" Multiplicity="0..1" />
+    <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountDetails">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="TransactionDetails">
+        <PropertyRef Name="RecieverAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Sende__5165187F">
+    <End Role="AccountDetails" Type="Self.AccountDetails" Multiplicity="0..1" />
+    <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountDetails">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="TransactionDetails">
+        <PropertyRef Name="SenderAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_accountstatement_between_twodates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="begindate" Type="datetime" Mode="In" />
+    <Parameter Name="enddate" Type="datetime" Mode="In" />
+    <Parameter Name="cid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_accstatement_between_twodates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="begindate" Type="datetime" Mode="In" />
+    <Parameter Name="enddate" Type="datetime" Mode="In" />
+    <Parameter Name="AccountNumber" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_adminapproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_admindispproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_deleterecords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_pendingapprovals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_registeruser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountNumber" Type="bigint" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="TransactionPassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Transfer_successsful" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="referenceid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_viewapprovals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ViewCustomerDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_viewpendingapprovals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ProjectBankingModelStoreContainer">
+    <EntitySet Name="AccountDetails" EntityType="Self.AccountDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeneficiaryDetails" EntityType="Self.BeneficiaryDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OccupationDetails" EntityType="Self.OccupationDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermanentAddress" EntityType="Self.PermanentAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResidentialAddress" EntityType="Self.ResidentialAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusTracking" EntityType="Self.StatusTracking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AccountDeta__CID__49C3F6B7" Association="Self.FK__AccountDeta__CID__49C3F6B7">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="AccountDetails" EntitySet="AccountDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Beneficia__Accou__4AB81AF0" Association="Self.FK__Beneficia__Accou__4AB81AF0">
+      <End Role="AccountDetails" EntitySet="AccountDetails" />
+      <End Role="BeneficiaryDetails" EntitySet="BeneficiaryDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OccupationD__CID__4BAC3F29" Association="Self.FK__OccupationD__CID__4BAC3F29">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="OccupationDetails" EntitySet="OccupationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PermanentAd__CID__4CA06362" Association="Self.FK__PermanentAd__CID__4CA06362">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="PermanentAddress" EntitySet="PermanentAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Residential__CID__4D94879B" Association="Self.FK__Residential__CID__4D94879B">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="ResidentialAddress" EntitySet="ResidentialAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StatusTra__Admin__4E88ABD4" Association="Self.FK__StatusTra__Admin__4E88ABD4">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="StatusTracking" EntitySet="StatusTracking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StatusTrack__CID__4F7CD00D" Association="Self.FK__StatusTrack__CID__4F7CD00D">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="StatusTracking" EntitySet="StatusTracking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Recie__5070F446" Association="Self.FK__Transacti__Recie__5070F446">
+      <End Role="AccountDetails" EntitySet="AccountDetails" />
+      <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Sende__5165187F" Association="Self.FK__Transacti__Sende__5165187F">
+      <End Role="AccountDetails" EntitySet="AccountDetails" />
+      <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

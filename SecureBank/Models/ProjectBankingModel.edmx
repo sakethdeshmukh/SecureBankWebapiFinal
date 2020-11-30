@@ -1,0 +1,1048 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjectBankingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountDetails">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="CID" Type="int" />
+          <Property Name="AccountNumber" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Accounttype" Type="nvarchar" MaxLength="20" />
+          <Property Name="AccountBalance" Type="float" />
+          <Property Name="Password" Type="nvarchar" MaxLength="40" />
+          <Property Name="TransactionPassword" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminPassword" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="BeneficiaryDetails">
+          <Key>
+            <PropertyRef Name="Bid" />
+          </Key>
+          <Property Name="Bid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountNumber" Type="bigint" />
+          <Property Name="BeneficiaryName" Type="nvarchar" MaxLength="40" />
+          <Property Name="BenificiaryAccountNumber" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aadharnumber" Type="bigint" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="NetBankingOpted" Type="bit" />
+          <Property Name="DebitCardOpted" Type="bit" />
+          <Property Name="IsApproved" Type="bit" />
+        </EntityType>
+        <EntityType Name="OccupationDetails">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CID" Type="int" />
+          <Property Name="Occupationtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourceofIncome" Type="nvarchar" MaxLength="50" />
+          <Property Name="GrossannualIncome" Type="float" />
+        </EntityType>
+        <EntityType Name="PermanentAddress">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CID" Type="int" />
+          <Property Name="PAddressLine1" Type="nvarchar(max)" />
+          <Property Name="PAddressLine2" Type="nvarchar(max)" />
+          <Property Name="PLandmark" Type="nvarchar(max)" />
+          <Property Name="PState" Type="nvarchar" MaxLength="40" />
+          <Property Name="PCity" Type="nvarchar" MaxLength="40" />
+          <Property Name="PPincode" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="ResidentialAddress">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CID" Type="int" />
+          <Property Name="RAddressLine1" Type="nvarchar(max)" />
+          <Property Name="RAddressLine2" Type="nvarchar(max)" />
+          <Property Name="RLandmark" Type="nvarchar(max)" />
+          <Property Name="RState" Type="nvarchar" MaxLength="40" />
+          <Property Name="RCity" Type="nvarchar" MaxLength="40" />
+          <Property Name="RPincode" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="StatusTracking">
+          <Key>
+            <PropertyRef Name="ReferenceNumber" />
+          </Key>
+          <Property Name="AdminId" Type="int" />
+          <Property Name="CID" Type="int" />
+          <Property Name="ReferenceNumber" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionDetails">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderAccount" Type="bigint" />
+          <Property Name="RecieverAccount" Type="bigint" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="10" />
+          <Property Name="TransactionAmount" Type="float" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="TransactionMode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Maturityinstruction" Type="nvarchar" MaxLength="30" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__AccountDeta__CID__49C3F6B7">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="AccountDetails" Type="Self.AccountDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="AccountDetails">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Beneficia__Accou__4AB81AF0">
+          <End Role="AccountDetails" Type="Self.AccountDetails" Multiplicity="0..1" />
+          <End Role="BeneficiaryDetails" Type="Self.BeneficiaryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="BeneficiaryDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OccupationD__CID__4BAC3F29">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="OccupationDetails" Type="Self.OccupationDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="OccupationDetails">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PermanentAd__CID__4CA06362">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="PermanentAddress" Type="Self.PermanentAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="PermanentAddress">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Residential__CID__4D94879B">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="ResidentialAddress" Type="Self.ResidentialAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="ResidentialAddress">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StatusTra__Admin__4E88ABD4">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="StatusTracking" Type="Self.StatusTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="StatusTracking">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StatusTrack__CID__4F7CD00D">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="StatusTracking" Type="Self.StatusTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="StatusTracking">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Recie__5070F446">
+          <End Role="AccountDetails" Type="Self.AccountDetails" Multiplicity="0..1" />
+          <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="TransactionDetails">
+              <PropertyRef Name="RecieverAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Sende__5165187F">
+          <End Role="AccountDetails" Type="Self.AccountDetails" Multiplicity="0..1" />
+          <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="TransactionDetails">
+              <PropertyRef Name="SenderAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_accountstatement_between_twodates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="begindate" Type="datetime" Mode="In" />
+          <Parameter Name="enddate" Type="datetime" Mode="In" />
+          <Parameter Name="cid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_accstatement_between_twodates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="begindate" Type="datetime" Mode="In" />
+          <Parameter Name="enddate" Type="datetime" Mode="In" />
+          <Parameter Name="AccountNumber" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_adminapproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_admindispproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_deleterecords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_pendingapprovals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_registeruser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountNumber" Type="bigint" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="TransactionPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Transfer_successsful" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="referenceid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_viewapprovals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_ViewCustomerDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_viewpendingapprovals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ProjectBankingModelStoreContainer">
+          <EntitySet Name="AccountDetails" EntityType="Self.AccountDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BeneficiaryDetails" EntityType="Self.BeneficiaryDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OccupationDetails" EntityType="Self.OccupationDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermanentAddress" EntityType="Self.PermanentAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResidentialAddress" EntityType="Self.ResidentialAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusTracking" EntityType="Self.StatusTracking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AccountDeta__CID__49C3F6B7" Association="Self.FK__AccountDeta__CID__49C3F6B7">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="AccountDetails" EntitySet="AccountDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Beneficia__Accou__4AB81AF0" Association="Self.FK__Beneficia__Accou__4AB81AF0">
+            <End Role="AccountDetails" EntitySet="AccountDetails" />
+            <End Role="BeneficiaryDetails" EntitySet="BeneficiaryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OccupationD__CID__4BAC3F29" Association="Self.FK__OccupationD__CID__4BAC3F29">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="OccupationDetails" EntitySet="OccupationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PermanentAd__CID__4CA06362" Association="Self.FK__PermanentAd__CID__4CA06362">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="PermanentAddress" EntitySet="PermanentAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Residential__CID__4D94879B" Association="Self.FK__Residential__CID__4D94879B">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ResidentialAddress" EntitySet="ResidentialAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StatusTra__Admin__4E88ABD4" Association="Self.FK__StatusTra__Admin__4E88ABD4">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="StatusTracking" EntitySet="StatusTracking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StatusTrack__CID__4F7CD00D" Association="Self.FK__StatusTrack__CID__4F7CD00D">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="StatusTracking" EntitySet="StatusTracking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Recie__5070F446" Association="Self.FK__Transacti__Recie__5070F446">
+            <End Role="AccountDetails" EntitySet="AccountDetails" />
+            <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Sende__5165187F" Association="Self.FK__Transacti__Sende__5165187F">
+            <End Role="AccountDetails" EntitySet="AccountDetails" />
+            <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectBankingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="CID" Type="Int32" />
+          <Property Name="AccountNumber" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Accounttype" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AccountBalance" Type="Double" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionPassword" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__AccountDeta__CID__49C3F6B7" FromRole="AccountDetails" ToRole="Customer" />
+          <NavigationProperty Name="BeneficiaryDetails" Relationship="Self.FK__Beneficia__Accou__4AB81AF0" FromRole="AccountDetails" ToRole="BeneficiaryDetails" />
+          <NavigationProperty Name="TransactionDetails" Relationship="Self.FK__Transacti__Recie__5070F446" FromRole="AccountDetails" ToRole="TransactionDetails" />
+          <NavigationProperty Name="TransactionDetails1" Relationship="Self.FK__Transacti__Sende__5165187F" FromRole="AccountDetails" ToRole="TransactionDetails" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminPassword" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StatusTrackings" Relationship="Self.FK__StatusTra__Admin__4E88ABD4" FromRole="Admin" ToRole="StatusTracking" />
+        </EntityType>
+        <EntityType Name="BeneficiaryDetail">
+          <Key>
+            <PropertyRef Name="Bid" />
+          </Key>
+          <Property Name="Bid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountNumber" Type="Int64" />
+          <Property Name="BeneficiaryName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="BenificiaryAccountNumber" Type="Int64" />
+          <NavigationProperty Name="AccountDetail" Relationship="Self.FK__Beneficia__Accou__4AB81AF0" FromRole="BeneficiaryDetails" ToRole="AccountDetails" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aadharnumber" Type="Int64" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="NetBankingOpted" Type="Boolean" />
+          <Property Name="DebitCardOpted" Type="Boolean" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <NavigationProperty Name="AccountDetails" Relationship="Self.FK__AccountDeta__CID__49C3F6B7" FromRole="Customer" ToRole="AccountDetails" />
+          <NavigationProperty Name="OccupationDetails" Relationship="Self.FK__OccupationD__CID__4BAC3F29" FromRole="Customer" ToRole="OccupationDetails" />
+          <NavigationProperty Name="PermanentAddresses" Relationship="Self.FK__PermanentAd__CID__4CA06362" FromRole="Customer" ToRole="PermanentAddress" />
+          <NavigationProperty Name="ResidentialAddresses" Relationship="Self.FK__Residential__CID__4D94879B" FromRole="Customer" ToRole="ResidentialAddress" />
+          <NavigationProperty Name="StatusTrackings" Relationship="Self.FK__StatusTrack__CID__4F7CD00D" FromRole="Customer" ToRole="StatusTracking" />
+        </EntityType>
+        <EntityType Name="OccupationDetail">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CID" Type="Int32" />
+          <Property Name="Occupationtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SourceofIncome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GrossannualIncome" Type="Double" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__OccupationD__CID__4BAC3F29" FromRole="OccupationDetails" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="PermanentAddress">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CID" Type="Int32" />
+          <Property Name="PAddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PAddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PLandmark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PState" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="PCity" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="PPincode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__PermanentAd__CID__4CA06362" FromRole="PermanentAddress" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="ResidentialAddress">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CID" Type="Int32" />
+          <Property Name="RAddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RAddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RLandmark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RState" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RCity" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RPincode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Residential__CID__4D94879B" FromRole="ResidentialAddress" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="StatusTracking">
+          <Key>
+            <PropertyRef Name="ReferenceNumber" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" />
+          <Property Name="CID" Type="Int32" />
+          <Property Name="ReferenceNumber" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK__StatusTra__Admin__4E88ABD4" FromRole="StatusTracking" ToRole="Admin" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__StatusTrack__CID__4F7CD00D" FromRole="StatusTracking" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="TransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderAccount" Type="Int64" />
+          <Property Name="RecieverAccount" Type="Int64" />
+          <Property Name="TransactionType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionAmount" Type="Double" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="TransactionMode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Maturityinstruction" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountDetail" Relationship="Self.FK__Transacti__Recie__5070F446" FromRole="TransactionDetails" ToRole="AccountDetails" />
+          <NavigationProperty Name="AccountDetail1" Relationship="Self.FK__Transacti__Sende__5165187F" FromRole="TransactionDetails" ToRole="AccountDetails" />
+        </EntityType>
+        <Association Name="FK__AccountDeta__CID__49C3F6B7">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="AccountDetails" Type="Self.AccountDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="AccountDetails">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Beneficia__Accou__4AB81AF0">
+          <End Role="AccountDetails" Type="Self.AccountDetail" Multiplicity="0..1" />
+          <End Role="BeneficiaryDetails" Type="Self.BeneficiaryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="BeneficiaryDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Recie__5070F446">
+          <End Role="AccountDetails" Type="Self.AccountDetail" Multiplicity="0..1" />
+          <End Role="TransactionDetails" Type="Self.TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="TransactionDetails">
+              <PropertyRef Name="RecieverAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Sende__5165187F">
+          <End Role="AccountDetails" Type="Self.AccountDetail" Multiplicity="0..1" />
+          <End Role="TransactionDetails" Type="Self.TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="TransactionDetails">
+              <PropertyRef Name="SenderAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StatusTra__Admin__4E88ABD4">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="StatusTracking" Type="Self.StatusTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="StatusTracking">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OccupationD__CID__4BAC3F29">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="OccupationDetails" Type="Self.OccupationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="OccupationDetails">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PermanentAd__CID__4CA06362">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="PermanentAddress" Type="Self.PermanentAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="PermanentAddress">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Residential__CID__4D94879B">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="ResidentialAddress" Type="Self.ResidentialAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="ResidentialAddress">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StatusTrack__CID__4F7CD00D">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="StatusTracking" Type="Self.StatusTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="StatusTracking">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectBankingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountDetails" EntityType="Self.AccountDetail" />
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="BeneficiaryDetails" EntityType="Self.BeneficiaryDetail" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="OccupationDetails" EntityType="Self.OccupationDetail" />
+          <EntitySet Name="PermanentAddresses" EntityType="Self.PermanentAddress" />
+          <EntitySet Name="ResidentialAddresses" EntityType="Self.ResidentialAddress" />
+          <EntitySet Name="StatusTrackings" EntityType="Self.StatusTracking" />
+          <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetail" />
+          <AssociationSet Name="FK__AccountDeta__CID__49C3F6B7" Association="Self.FK__AccountDeta__CID__49C3F6B7">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="AccountDetails" EntitySet="AccountDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Beneficia__Accou__4AB81AF0" Association="Self.FK__Beneficia__Accou__4AB81AF0">
+            <End Role="AccountDetails" EntitySet="AccountDetails" />
+            <End Role="BeneficiaryDetails" EntitySet="BeneficiaryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Recie__5070F446" Association="Self.FK__Transacti__Recie__5070F446">
+            <End Role="AccountDetails" EntitySet="AccountDetails" />
+            <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Sende__5165187F" Association="Self.FK__Transacti__Sende__5165187F">
+            <End Role="AccountDetails" EntitySet="AccountDetails" />
+            <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StatusTra__Admin__4E88ABD4" Association="Self.FK__StatusTra__Admin__4E88ABD4">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="StatusTracking" EntitySet="StatusTrackings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OccupationD__CID__4BAC3F29" Association="Self.FK__OccupationD__CID__4BAC3F29">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="OccupationDetails" EntitySet="OccupationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PermanentAd__CID__4CA06362" Association="Self.FK__PermanentAd__CID__4CA06362">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="PermanentAddress" EntitySet="PermanentAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Residential__CID__4D94879B" Association="Self.FK__Residential__CID__4D94879B">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ResidentialAddress" EntitySet="ResidentialAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StatusTrack__CID__4F7CD00D" Association="Self.FK__StatusTrack__CID__4F7CD00D">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="StatusTracking" EntitySet="StatusTrackings" />
+          </AssociationSet>
+          <FunctionImport Name="sp_accountstatement_between_twodates" ReturnType="Collection(ProjectBankingModel.sp_accountstatement_between_twodates_Result)">
+            <Parameter Name="begindate" Mode="In" Type="DateTime" />
+            <Parameter Name="enddate" Mode="In" Type="DateTime" />
+            <Parameter Name="cid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_adminapproval">
+          <Parameter Name="cid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_admindispproval">
+          <Parameter Name="CID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deleterecords">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_pendingapprovals" ReturnType="Collection(ProjectBankingModel.sp_pendingapprovals_Result)" />
+          <FunctionImport Name="sp_registeruser">
+            <Parameter Name="AccountNumber" Mode="In" Type="Int64" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="TransactionPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Transfer_successsful" ReturnType="Collection(ProjectBankingModel.sp_Transfer_successsful_Result)">
+          <Parameter Name="referenceid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_viewapprovals" ReturnType="Collection(ProjectBankingModel.sp_viewapprovals_Result)" />
+          <FunctionImport Name="sp_viewpendingapprovals" ReturnType="Collection(ProjectBankingModel.sp_viewpendingapprovals_Result)" />
+          <FunctionImport Name="sp_ViewCustomerDetails" ReturnType="Collection(ProjectBankingModel.sp_ViewCustomerDetails_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_accstatement_between_twodates" ReturnType="Collection(ProjectBankingModel.sp_accstatement_between_twodates_Result)">
+            <Parameter Name="begindate" Mode="In" Type="DateTime" />
+            <Parameter Name="enddate" Mode="In" Type="DateTime" />
+            <Parameter Name="AccountNumber" Mode="In" Type="Int64" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_accountstatement_between_twodates_Result">
+          <Property Type="Int32" Name="TransactionID" Nullable="false" />
+          <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="TransactionAmount" Nullable="true" />
+          <Property Type="Int64" Name="SenderAccount" Nullable="true" />
+          <Property Type="Int64" Name="RecieverAccount" Nullable="true" />
+          <Property Type="String" Name="TransactionMode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="sp_pendingapprovals_Result">
+          <Property Type="Int32" Name="CID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FatherName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmailID" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="Aadharnumber" Nullable="true" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="Boolean" Name="Isapproved" Nullable="true" />
+          <Property Type="String" Name="PAddressLine1" Nullable="true" />
+          <Property Type="String" Name="PAddressLine2" Nullable="true" />
+          <Property Type="String" Name="PLandmark" Nullable="true" />
+          <Property Type="String" Name="PState" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PCity" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PPincode" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RAddressLine1" Nullable="true" />
+          <Property Type="String" Name="RAddressLine2" Nullable="true" />
+          <Property Type="String" Name="RLandmark" Nullable="true" />
+          <Property Type="String" Name="RState" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RCity" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RPincode" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Occupationtype" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceofIncome" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="GrossannualIncome" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Transfer_successsful_Result">
+          <Property Type="Int32" Name="TransactionID" Nullable="false" />
+          <Property Type="Int64" Name="SenderAccount" Nullable="true" />
+          <Property Type="Int64" Name="RecieverAccount" Nullable="true" />
+          <Property Type="String" Name="TransactionType" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="TransactionAmount" Nullable="true" />
+          <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TransactionMode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Maturityinstruction" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="sp_viewapprovals_Result">
+          <Property Type="Int32" Name="CID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FatherName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmailID" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="Aadharnumber" Nullable="true" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="PAddressLine1" Nullable="true" />
+          <Property Type="String" Name="PAddressLine2" Nullable="true" />
+          <Property Type="String" Name="PLandmark" Nullable="true" />
+          <Property Type="String" Name="PState" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PCity" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PPincode" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RAddressLine1" Nullable="true" />
+          <Property Type="String" Name="RAddressLine2" Nullable="true" />
+          <Property Type="String" Name="RLandmark" Nullable="true" />
+          <Property Type="String" Name="RState" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RCity" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RPincode" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Occupationtype" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceofIncome" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="GrossannualIncome" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_viewpendingapprovals_Result">
+          <Property Type="Int32" Name="CID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FatherName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmailID" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="Aadharnumber" Nullable="true" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="PAddressLine1" Nullable="true" />
+          <Property Type="String" Name="PAddressLine2" Nullable="true" />
+          <Property Type="String" Name="PLandmark" Nullable="true" />
+          <Property Type="String" Name="PState" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PCity" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PPincode" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RAddressLine1" Nullable="true" />
+          <Property Type="String" Name="RAddressLine2" Nullable="true" />
+          <Property Type="String" Name="RLandmark" Nullable="true" />
+          <Property Type="String" Name="RState" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RCity" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RPincode" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Occupationtype" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceofIncome" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="GrossannualIncome" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_ViewCustomerDetails_Result">
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FatherName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmailID" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="Aadharnumber" Nullable="true" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="RAddressLine1" Nullable="true" />
+          <Property Type="String" Name="RAddressLine2" Nullable="true" />
+          <Property Type="String" Name="RLandmark" Nullable="true" />
+          <Property Type="String" Name="RState" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RCity" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="RPincode" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PAddressLine1" Nullable="true" />
+          <Property Type="String" Name="PAddressLine2" Nullable="true" />
+          <Property Type="String" Name="PLandmark" Nullable="true" />
+          <Property Type="String" Name="PState" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PCity" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PPincode" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Occupationtype" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceofIncome" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="GrossannualIncome" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_accstatement_between_twodates_Result">
+          <Property Type="Int32" Name="TransactionID" Nullable="false" />
+          <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="TransactionAmount" Nullable="true" />
+          <Property Type="Int64" Name="SenderAccount" Nullable="true" />
+          <Property Type="Int64" Name="RecieverAccount" Nullable="true" />
+          <Property Type="String" Name="TransactionMode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="30" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectBankingModelStoreContainer" CdmEntityContainer="ProjectBankingEntities">
+          <EntitySetMapping Name="AccountDetails">
+            <EntityTypeMapping TypeName="ProjectBankingModel.AccountDetail">
+              <MappingFragment StoreEntitySet="AccountDetails">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="Accounttype" ColumnName="Accounttype" />
+                <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="TransactionPassword" ColumnName="TransactionPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="ProjectBankingModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BeneficiaryDetails">
+            <EntityTypeMapping TypeName="ProjectBankingModel.BeneficiaryDetail">
+              <MappingFragment StoreEntitySet="BeneficiaryDetails">
+                <ScalarProperty Name="Bid" ColumnName="Bid" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="BeneficiaryName" ColumnName="BeneficiaryName" />
+                <ScalarProperty Name="BenificiaryAccountNumber" ColumnName="BenificiaryAccountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ProjectBankingModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="NetBankingOpted" ColumnName="NetBankingOpted" />
+                <ScalarProperty Name="DebitCardOpted" ColumnName="DebitCardOpted" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OccupationDetails">
+            <EntityTypeMapping TypeName="ProjectBankingModel.OccupationDetail">
+              <MappingFragment StoreEntitySet="OccupationDetails">
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+                <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+                <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermanentAddresses">
+            <EntityTypeMapping TypeName="ProjectBankingModel.PermanentAddress">
+              <MappingFragment StoreEntitySet="PermanentAddress">
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+                <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+                <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+                <ScalarProperty Name="PState" ColumnName="PState" />
+                <ScalarProperty Name="PCity" ColumnName="PCity" />
+                <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResidentialAddresses">
+            <EntityTypeMapping TypeName="ProjectBankingModel.ResidentialAddress">
+              <MappingFragment StoreEntitySet="ResidentialAddress">
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+                <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+                <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+                <ScalarProperty Name="RState" ColumnName="RState" />
+                <ScalarProperty Name="RCity" ColumnName="RCity" />
+                <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusTrackings">
+            <EntityTypeMapping TypeName="ProjectBankingModel.StatusTracking">
+              <MappingFragment StoreEntitySet="StatusTracking">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionDetails">
+            <EntityTypeMapping TypeName="ProjectBankingModel.TransactionDetail">
+              <MappingFragment StoreEntitySet="TransactionDetails">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+                <ScalarProperty Name="RecieverAccount" ColumnName="RecieverAccount" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionMode" ColumnName="TransactionMode" />
+                <ScalarProperty Name="Maturityinstruction" ColumnName="Maturityinstruction" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_accountstatement_between_twodates" FunctionName="ProjectBankingModel.Store.sp_accountstatement_between_twodates">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectBankingModel.sp_accountstatement_between_twodates_Result">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+                <ScalarProperty Name="RecieverAccount" ColumnName="RecieverAccount" />
+                <ScalarProperty Name="TransactionMode" ColumnName="TransactionMode" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_adminapproval" FunctionName="ProjectBankingModel.Store.sp_adminapproval" />
+          <FunctionImportMapping FunctionImportName="sp_admindispproval" FunctionName="ProjectBankingModel.Store.sp_admindispproval" />
+          <FunctionImportMapping FunctionImportName="sp_deleterecords" FunctionName="ProjectBankingModel.Store.sp_deleterecords" />
+          <FunctionImportMapping FunctionImportName="sp_pendingapprovals" FunctionName="ProjectBankingModel.Store.sp_pendingapprovals">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectBankingModel.sp_pendingapprovals_Result">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Isapproved" ColumnName="Isapproved" />
+                <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+                <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+                <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+                <ScalarProperty Name="PState" ColumnName="PState" />
+                <ScalarProperty Name="PCity" ColumnName="PCity" />
+                <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+                <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+                <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+                <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+                <ScalarProperty Name="RState" ColumnName="RState" />
+                <ScalarProperty Name="RCity" ColumnName="RCity" />
+                <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+                <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+                <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+                <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_registeruser" FunctionName="ProjectBankingModel.Store.sp_registeruser" />
+          <FunctionImportMapping FunctionImportName="sp_Transfer_successsful" FunctionName="ProjectBankingModel.Store.sp_Transfer_successsful">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectBankingModel.sp_Transfer_successsful_Result">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+                <ScalarProperty Name="RecieverAccount" ColumnName="RecieverAccount" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionMode" ColumnName="TransactionMode" />
+                <ScalarProperty Name="Maturityinstruction" ColumnName="Maturityinstruction" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_viewapprovals" FunctionName="ProjectBankingModel.Store.sp_viewapprovals">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectBankingModel.sp_viewapprovals_Result">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+                <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+                <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+                <ScalarProperty Name="PState" ColumnName="PState" />
+                <ScalarProperty Name="PCity" ColumnName="PCity" />
+                <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+                <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+                <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+                <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+                <ScalarProperty Name="RState" ColumnName="RState" />
+                <ScalarProperty Name="RCity" ColumnName="RCity" />
+                <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+                <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+                <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+                <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_viewpendingapprovals" FunctionName="ProjectBankingModel.Store.sp_viewpendingapprovals">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectBankingModel.sp_viewpendingapprovals_Result">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+                <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+                <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+                <ScalarProperty Name="PState" ColumnName="PState" />
+                <ScalarProperty Name="PCity" ColumnName="PCity" />
+                <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+                <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+                <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+                <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+                <ScalarProperty Name="RState" ColumnName="RState" />
+                <ScalarProperty Name="RCity" ColumnName="RCity" />
+                <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+                <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+                <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+                <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ViewCustomerDetails" FunctionName="ProjectBankingModel.Store.sp_ViewCustomerDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectBankingModel.sp_ViewCustomerDetails_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+                <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+                <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+                <ScalarProperty Name="RState" ColumnName="RState" />
+                <ScalarProperty Name="RCity" ColumnName="RCity" />
+                <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+                <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+                <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+                <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+                <ScalarProperty Name="PState" ColumnName="PState" />
+                <ScalarProperty Name="PCity" ColumnName="PCity" />
+                <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+                <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+                <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+                <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_accstatement_between_twodates" FunctionName="ProjectBankingModel.Store.sp_accstatement_between_twodates">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectBankingModel.sp_accstatement_between_twodates_Result">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+                <ScalarProperty Name="RecieverAccount" ColumnName="RecieverAccount" />
+                <ScalarProperty Name="TransactionMode" ColumnName="TransactionMode" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

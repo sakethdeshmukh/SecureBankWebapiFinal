@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjectBankingModelStoreContainer" CdmEntityContainer="ProjectBankingEntities">
+    <EntitySetMapping Name="AccountDetails">
+      <EntityTypeMapping TypeName="ProjectBankingModel.AccountDetail">
+        <MappingFragment StoreEntitySet="AccountDetails">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="Accounttype" ColumnName="Accounttype" />
+          <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="TransactionPassword" ColumnName="TransactionPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="ProjectBankingModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeneficiaryDetails">
+      <EntityTypeMapping TypeName="ProjectBankingModel.BeneficiaryDetail">
+        <MappingFragment StoreEntitySet="BeneficiaryDetails">
+          <ScalarProperty Name="Bid" ColumnName="Bid" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BeneficiaryName" ColumnName="BeneficiaryName" />
+          <ScalarProperty Name="BenificiaryAccountNumber" ColumnName="BenificiaryAccountNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="ProjectBankingModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="NetBankingOpted" ColumnName="NetBankingOpted" />
+          <ScalarProperty Name="DebitCardOpted" ColumnName="DebitCardOpted" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OccupationDetails">
+      <EntityTypeMapping TypeName="ProjectBankingModel.OccupationDetail">
+        <MappingFragment StoreEntitySet="OccupationDetails">
+          <ScalarProperty Name="OID" ColumnName="OID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+          <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+          <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermanentAddresses">
+      <EntityTypeMapping TypeName="ProjectBankingModel.PermanentAddress">
+        <MappingFragment StoreEntitySet="PermanentAddress">
+          <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+          <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+          <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+          <ScalarProperty Name="PState" ColumnName="PState" />
+          <ScalarProperty Name="PCity" ColumnName="PCity" />
+          <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResidentialAddresses">
+      <EntityTypeMapping TypeName="ProjectBankingModel.ResidentialAddress">
+        <MappingFragment StoreEntitySet="ResidentialAddress">
+          <ScalarProperty Name="RID" ColumnName="RID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+          <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+          <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+          <ScalarProperty Name="RState" ColumnName="RState" />
+          <ScalarProperty Name="RCity" ColumnName="RCity" />
+          <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusTrackings">
+      <EntityTypeMapping TypeName="ProjectBankingModel.StatusTracking">
+        <MappingFragment StoreEntitySet="StatusTracking">
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionDetails">
+      <EntityTypeMapping TypeName="ProjectBankingModel.TransactionDetail">
+        <MappingFragment StoreEntitySet="TransactionDetails">
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+          <ScalarProperty Name="RecieverAccount" ColumnName="RecieverAccount" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TransactionMode" ColumnName="TransactionMode" />
+          <ScalarProperty Name="Maturityinstruction" ColumnName="Maturityinstruction" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_accountstatement_between_twodates" FunctionName="ProjectBankingModel.Store.sp_accountstatement_between_twodates">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjectBankingModel.sp_accountstatement_between_twodates_Result">
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+          <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+          <ScalarProperty Name="RecieverAccount" ColumnName="RecieverAccount" />
+          <ScalarProperty Name="TransactionMode" ColumnName="TransactionMode" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_adminapproval" FunctionName="ProjectBankingModel.Store.sp_adminapproval" />
+    <FunctionImportMapping FunctionImportName="sp_admindispproval" FunctionName="ProjectBankingModel.Store.sp_admindispproval" />
+    <FunctionImportMapping FunctionImportName="sp_deleterecords" FunctionName="ProjectBankingModel.Store.sp_deleterecords" />
+    <FunctionImportMapping FunctionImportName="sp_pendingapprovals" FunctionName="ProjectBankingModel.Store.sp_pendingapprovals">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjectBankingModel.sp_pendingapprovals_Result">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Isapproved" ColumnName="Isapproved" />
+          <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+          <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+          <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+          <ScalarProperty Name="PState" ColumnName="PState" />
+          <ScalarProperty Name="PCity" ColumnName="PCity" />
+          <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+          <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+          <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+          <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+          <ScalarProperty Name="RState" ColumnName="RState" />
+          <ScalarProperty Name="RCity" ColumnName="RCity" />
+          <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+          <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+          <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+          <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_registeruser" FunctionName="ProjectBankingModel.Store.sp_registeruser" />
+    <FunctionImportMapping FunctionImportName="sp_Transfer_successsful" FunctionName="ProjectBankingModel.Store.sp_Transfer_successsful">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjectBankingModel.sp_Transfer_successsful_Result">
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+          <ScalarProperty Name="RecieverAccount" ColumnName="RecieverAccount" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TransactionMode" ColumnName="TransactionMode" />
+          <ScalarProperty Name="Maturityinstruction" ColumnName="Maturityinstruction" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_viewapprovals" FunctionName="ProjectBankingModel.Store.sp_viewapprovals">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjectBankingModel.sp_viewapprovals_Result">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+          <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+          <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+          <ScalarProperty Name="PState" ColumnName="PState" />
+          <ScalarProperty Name="PCity" ColumnName="PCity" />
+          <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+          <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+          <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+          <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+          <ScalarProperty Name="RState" ColumnName="RState" />
+          <ScalarProperty Name="RCity" ColumnName="RCity" />
+          <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+          <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+          <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+          <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_viewpendingapprovals" FunctionName="ProjectBankingModel.Store.sp_viewpendingapprovals">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjectBankingModel.sp_viewpendingapprovals_Result">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+          <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+          <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+          <ScalarProperty Name="PState" ColumnName="PState" />
+          <ScalarProperty Name="PCity" ColumnName="PCity" />
+          <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+          <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+          <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+          <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+          <ScalarProperty Name="RState" ColumnName="RState" />
+          <ScalarProperty Name="RCity" ColumnName="RCity" />
+          <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+          <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+          <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+          <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ViewCustomerDetails" FunctionName="ProjectBankingModel.Store.sp_ViewCustomerDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjectBankingModel.sp_ViewCustomerDetails_Result">
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="Aadharnumber" ColumnName="Aadharnumber" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="RAddressLine1" ColumnName="RAddressLine1" />
+          <ScalarProperty Name="RAddressLine2" ColumnName="RAddressLine2" />
+          <ScalarProperty Name="RLandmark" ColumnName="RLandmark" />
+          <ScalarProperty Name="RState" ColumnName="RState" />
+          <ScalarProperty Name="RCity" ColumnName="RCity" />
+          <ScalarProperty Name="RPincode" ColumnName="RPincode" />
+          <ScalarProperty Name="PAddressLine1" ColumnName="PAddressLine1" />
+          <ScalarProperty Name="PAddressLine2" ColumnName="PAddressLine2" />
+          <ScalarProperty Name="PLandmark" ColumnName="PLandmark" />
+          <ScalarProperty Name="PState" ColumnName="PState" />
+          <ScalarProperty Name="PCity" ColumnName="PCity" />
+          <ScalarProperty Name="PPincode" ColumnName="PPincode" />
+          <ScalarProperty Name="Occupationtype" ColumnName="Occupationtype" />
+          <ScalarProperty Name="SourceofIncome" ColumnName="SourceofIncome" />
+          <ScalarProperty Name="GrossannualIncome" ColumnName="GrossannualIncome" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_accstatement_between_twodates" FunctionName="ProjectBankingModel.Store.sp_accstatement_between_twodates">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjectBankingModel.sp_accstatement_between_twodates_Result">
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+          <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+          <ScalarProperty Name="RecieverAccount" ColumnName="RecieverAccount" />
+          <ScalarProperty Name="TransactionMode" ColumnName="TransactionMode" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
