@@ -10,10 +10,10 @@ namespace SecureBank.Models
         ProjectBankingEntities db = new ProjectBankingEntities();
 
 
-        public AccountDetail Get(int id)
+        public IEnumerable<AccountDetail> Get(int id)
         {
             var acc = db.AccountDetails
-                .Where(a => a.CID == id).FirstOrDefault();
+                .Where(a => a.CID == id);
 
             return acc;
 

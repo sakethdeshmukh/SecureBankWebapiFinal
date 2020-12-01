@@ -12,18 +12,31 @@ namespace SecureBank.Controllers
     {
         ProjectBankingEntities db = new ProjectBankingEntities();
         [HttpPost]
-        public HttpResponseMessage RegisterOnlineBanking(NetRegistration netRegistration)
+        public dynamic RegisterOnlineBanking(NetRegistration netRegistration)
         {
-            try
+            if(db.AccountDetails.Any(a=>a.AccountNumber==netRegistration.AccountNumber))
             {
                 var reg = db.sp_registeruser(netRegistration.AccountNumber, netRegistration.Password, netRegistration.TransactionPassword);
                 db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, reg);
+                
             }
-            catch
+            else
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Account Number doesnt exist");
+                return "Account Number does not exists";
+
             }
+            return Request.CreateResponse(HttpStatusCode.OK, "Registered Successfully");
+
+            //try
+            //{
+            //    var reg = db.sp_registeruser(netRegistration.AccountNumber, netRegistration.Password, netRegistration.TransactionPassword);
+            //    db.SaveChanges();
+            //    return Ok("Registered Successfully");
+            //}
+            //catch(Exception ex)
+            //{
+            //    throw new Exception("Account Number does not exist!!",ex);
+            //}
         }
     }
 }

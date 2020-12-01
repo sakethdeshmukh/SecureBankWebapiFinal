@@ -23,7 +23,7 @@ namespace SecureBank.Models
             this.TransactionDetails = new HashSet<TransactionDetail>();
             this.TransactionDetails1 = new HashSet<TransactionDetail>();
         }
-
+    
         [DataMember]
         public Nullable<int> CID { get; set; }
         [DataMember]

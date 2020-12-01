@@ -18,20 +18,28 @@ namespace SecureBank.Controllers
         
         public IHttpActionResult PostBeneficiary(long id, [FromBody] BeneficiaryDetail beny)
         {
-            try
+            if(db.AccountDetails.Any(a=>a.AccountNumber==beny.BenificiaryAccountNumber))
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
                 objben.AddBenificiary(id, beny);
             }
-
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                return Ok("Beneficiary Account Number does not exists");
             }
+            //try
+            //{
+            //    if (!ModelState.IsValid)
+            //    {
+            //        return BadRequest(ModelState);
+            //    }
+
+            //    objben.AddBenificiary(id, beny);
+            //}
+
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
 
             return Ok(beny);
         }

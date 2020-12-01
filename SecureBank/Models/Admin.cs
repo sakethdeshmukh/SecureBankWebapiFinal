@@ -21,7 +21,7 @@ namespace SecureBank.Models
         {
             this.StatusTrackings = new HashSet<StatusTracking>();
         }
-
+    
         [DataMember]
         public int AdminId { get; set; }
         [DataMember]

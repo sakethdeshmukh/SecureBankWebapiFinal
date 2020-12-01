@@ -22,7 +22,7 @@ namespace SecureBank.Models
         public Nullable<int> CID { get; set; }
         [DataMember]
         public long ReferenceNumber { get; set; }
-    
+
         public virtual Admin Admin { get; set; }
         public virtual Customer Customer { get; set; }
     }

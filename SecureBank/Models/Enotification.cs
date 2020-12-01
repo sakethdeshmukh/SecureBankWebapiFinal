@@ -50,12 +50,15 @@ namespace SecureBank.Models
                 acc.CID = cus.CID;
                 acc.Password = pass;
                 acc.TransactionPassword = tpass;
+                acc.AccountBalance = 0;
+                acc.Accounttype = "Savings";
                 db.AccountDetails.Add(acc);
                 db.SaveChanges();
 
 
                 // acc.CID = cus.CID;
                 // acc.TransactionPassword = tpass;
+
                 //// db.AccountDetails.Add(acc)
 
                 var cust = db.AccountDetails
